@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmx.project.mapper.AnimalMapper">
+
+    <resultMap id="BaseResultMap" type="com.lmx.project.model.entity.Animal">
+            <result property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="categoryid" column="categoryId" jdbcType="BIGINT"/>
+            <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
+            <result property="picture" column="picture" jdbcType="VARCHAR"/>
+            <result property="endangeredlevel" column="endangeredLevel" jdbcType="VARCHAR"/>
+            <result property="morphologydescription" column="morphologyDescription" jdbcType="VARCHAR"/>
+            <result property="habit" column="habit" jdbcType="VARCHAR"/>
+            <result property="geographicalenvironment" column="geographicalEnvironment" jdbcType="VARCHAR"/>
+            <result property="distributionrange" column="distributionRange" jdbcType="VARCHAR"/>
+<!--            <result property="report" column="report" jdbcType="VARCHAR"/>-->
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,categoryId,
+        introduction,picture,endangeredLevel,
+        morphologyDescription,habit,geographicalEnvironment,
+        distributionRange,report,createTime,
+        updateTime,isDelete
+    </sql>
+</mapper>

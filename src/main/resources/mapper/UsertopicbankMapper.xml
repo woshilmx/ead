@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmx.project.mapper.UsertopicbankMapper">
+
+    <resultMap id="BaseResultMap" type="com.lmx.project.model.entity.Usertopicbank">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userid" column="userId" jdbcType="BIGINT"/>
+        <result property="questionid" column="questionId" jdbcType="BIGINT"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,userId,questionId,
+        status,createTime,updateTime,
+        isDelete
+    </sql>
+    <select id="selectLevelByUserid" resultType="java.lang.Integer">
+
+        select belongLevel
+        from topicbank
+                 join userTopicbank t on t.questionId = topicbank.id
+        where t.userId = #{userid} and topicbank.isDelete=0;
+
+    </select>
+
+    <select id="selectTopicBankByUserIdAndLevel" resultType="com.lmx.project.model.vo.TopicBankVo">
+        select topicbank.id,
+               topicbank.id,
+               topicbank.type,
+               topicbank.answer,
+               topicbank.analysis,
+               topicbank.belongLevel,
+               topicbank.question
+        from topicbank
+                 join userTopicbank t on t.questionId = topicbank.id
+        where t.userId = #{userid}
+          and topicbank.belongLevel =#{belongLevel} and topicbank.isDelete=0;
+    </select>
+
+</mapper>
